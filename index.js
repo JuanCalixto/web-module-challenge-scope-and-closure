@@ -31,9 +31,12 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   counter1 has count variable in in the local scope and counter2 has it in the global scope
   
   2. Which of the two uses a closure? How can you tell?
+  counter2 as its accessing the variable count outside its scope using closure.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
-     counter2 be better?  
+     counter2 be better?
+    counter1 code will be preferable when the local variable inside the function is not going to be changing and counter2 will be preferable when variable is going to be changing in the code.
+       
 */
 
 // counter1 code
@@ -63,9 +66,11 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    return Math.round(Math.random() * 2);
 }
+
+console.log(inning());
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
