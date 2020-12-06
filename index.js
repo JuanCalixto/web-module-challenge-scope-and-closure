@@ -157,11 +157,27 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScore, inning, num) {
+  let scoresArray = [];
+  let results = {
+    'Home': 0,
+    'Away': 0,
+    'Scores': function(away, home) {return `Away ${away} - Home ${home}`},
+    'TieMessage': function() {return `This game will require extra innings: ${this.Scores(this.Away, this.Home)}`},
+    'FinalScore': function() {return `Final Score: ${this.Scores(this.Away, this.Home)}`}
+  }
+  for(let i = 0; i < num; i++) {
+    let homeScore = getInningScore(inning).Home;
+    let awayScore = getInningScore(inning).Away;
+    results.Home += homeScore;
+    results.Away += awayScore;
+    scoresArray.push(`Inning ${i+1}: ${results.Scores(awayScore, homeScore)}`);
+  }
+  results.Home === results.Away ? scoresArray.push(results.TieMessage()) : scoresArray.push(results.FinalScore());
+  return scoresArray;
 }
 
-
+console.log(scoreboard(getInningScore,inning, 9));
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
